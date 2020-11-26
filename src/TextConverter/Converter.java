@@ -31,11 +31,11 @@ public class Converter {
             resultFileHandler.close();
             myReader.close();
         } catch (FileNotFoundException e) {
-            System.out.println("There is no file path");
-            e.printStackTrace();
+//            System.out.println("There is no file path");
         } catch (IOException e) {
-            System.out.println("Error");
-            e.printStackTrace();
+//            System.out.println("Error");
+        } catch (StringIndexOutOfBoundsException e) {
+//            System.out.println("Too long final code");
         }
     }
 }

@@ -24,8 +24,8 @@ public class Reader {
             }
             myReader.close();
         } catch (FileNotFoundException e) {
-            System.out.println("There is no file path");
-            e.printStackTrace();
+//            System.out.println("There is no file path on your disk");
+//            e.printStackTrace();
         }
         return indexesOfLineWithCode;
     }
@@ -52,14 +52,6 @@ public class Reader {
         return indexesOfFirstCharInCode;
     }
 
-    public static void main(String[] args) {
-        String path = "example.txt";
-        String code = "df";
-        Scanner scan= new Scanner(System.in);
-        String finalPath = scan.next();
-        String finalCode = scan.next();
-        Converter.convertFile(path, code, finalPath, finalCode);
-    }
 }
 
 
