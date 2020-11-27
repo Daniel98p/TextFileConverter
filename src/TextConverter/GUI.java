@@ -1,6 +1,7 @@
 package TextConverter;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -68,6 +69,7 @@ public class GUI implements ActionListener {
 
         success = new JLabel("");
         success.setBounds(10, 240, 300, 25);
+        success.setForeground(Color.GREEN);
         panel.add(success);
 
         frame.setVisible(true);
@@ -77,33 +79,29 @@ public class GUI implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String finalPathText = finalPath.getText();
-        if (finalPathText.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Path cannot be empty", "Empty path error", JOptionPane.ERROR_MESSAGE);
-        }
         String pathText = path.getText();
-        if (pathText.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Path cannot be empty", "Empty path error", JOptionPane.ERROR_MESSAGE);
-        }
         File tmpDir = new File(pathText);
-        if (!tmpDir.exists() || tmpDir.isDirectory()){
-            JOptionPane.showMessageDialog(null, "There is no file on your disk", "No file error", JOptionPane.ERROR_MESSAGE);
-        }
         String finalCodeText = finalCode.getText();
-        if (finalCodeText.length() > 5){
-            JOptionPane.showMessageDialog(null, "Code length can't be bigger than 5", "To long code", JOptionPane.ERROR_MESSAGE);
-        }
         String codeText = code.getText();
-        if (codeText.length() > 5){
+        if (finalPathText.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Path of target file cannot be empty", "Empty path error", JOptionPane.ERROR_MESSAGE);
+        } else if (pathText.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Path cannot be empty", "Empty path error", JOptionPane.ERROR_MESSAGE);
+        } else if (!tmpDir.exists() || tmpDir.isDirectory()) {
+            JOptionPane.showMessageDialog(null, "There is no file on your disk", "No file error", JOptionPane.ERROR_MESSAGE);
+        } else if (finalCodeText.length() > 5) {
             JOptionPane.showMessageDialog(null, "Code length can't be bigger than 5", "To long code", JOptionPane.ERROR_MESSAGE);
+        } else if (codeText.length() > 5) {
+            JOptionPane.showMessageDialog(null, "Code length can't be bigger than 5", "To long code", JOptionPane.ERROR_MESSAGE);
+        } else if (codeText.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Code cannot be empty", "Empty code", JOptionPane.ERROR_MESSAGE);
+        } else if (finalCodeText.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Final code cannot be empty", "Empty final code", JOptionPane.ERROR_MESSAGE);
+        } else {
+            Converter.convertFile(pathText, codeText, finalPathText, finalCodeText);
+            success.setText("Congratulations you successfully convert a file!");
         }
-        Converter.convertFile(pathText, codeText, finalPathText, finalCodeText);
+
     }
 }
-
-//        String path = "example.txt";
-//        String code = "df";
-//        Scanner scan= new Scanner(System.in);
-//        String finalPath = scan.next();
-//        String finalCode = scan.next();
-//        Converter.convertFile(path, code, finalPath, finalCode);
 
