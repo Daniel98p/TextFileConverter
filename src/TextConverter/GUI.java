@@ -19,13 +19,40 @@ public class GUI implements ActionListener {
     private static JTextField finalCode;
     private static JButton submitButton;
     private static JLabel success;
+    private static JLabel descriptionReadFile;
+    private static JLabel descriptionTargetFile;
+    private static JTextArea tenLinesOfReadFile;
+    private static JTextArea tenLinesOfTargetFile;
+
+    public static String saveTenLinesOfFile(String path) {
+        int lineIndexer = 0;
+        String result = "";
+        try {
+            File handler = new File(path);
+            Scanner myReader = new Scanner(handler);
+            while (myReader.hasNextLine()) {
+                if (lineIndexer == 10){
+                    break;
+                }
+                String data = myReader.nextLine();
+                result = result + data + "\n";
+                lineIndexer += 1;
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+//            System.out.println("There is no file path on your disk");
+//            e.printStackTrace();
+        }
+        System.out.println(result);
+        return result;
+    }
 
 
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         JPanel panel = new JPanel();
         frame.setTitle("File conversion data");
-        frame.setSize(500, 500);
+        frame.setSize(800, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(panel);
         panel.setLayout(null);
@@ -72,6 +99,24 @@ public class GUI implements ActionListener {
         success.setForeground(Color.GREEN);
         panel.add(success);
 
+        descriptionReadFile = new JLabel("READ FILE");
+        descriptionReadFile.setBounds(10, 340, 100, 25);
+        descriptionReadFile.setForeground(Color.RED);
+        panel.add(descriptionReadFile);
+
+        descriptionTargetFile = new JLabel("TARGET FILE");
+        descriptionTargetFile.setBounds(410, 340, 100, 25);
+        descriptionTargetFile.setForeground(Color.RED);
+        panel.add(descriptionTargetFile);
+
+        tenLinesOfReadFile = new JTextArea("");
+        tenLinesOfReadFile.setBounds(10, 360, 350, 350);
+        panel.add(tenLinesOfReadFile);
+
+        tenLinesOfTargetFile = new JTextArea("");
+        tenLinesOfTargetFile.setBounds(410, 360, 350, 350);
+        panel.add(tenLinesOfTargetFile);
+
         frame.setVisible(true);
 
     }
@@ -100,6 +145,10 @@ public class GUI implements ActionListener {
         } else {
             Converter.convertFile(pathText, codeText, finalPathText, finalCodeText);
             success.setText("Congratulations you successfully convert a file!");
+            String readFileData = saveTenLinesOfFile(path.getText());
+            tenLinesOfReadFile.setText(readFileData);
+            String readTargetFileData = saveTenLinesOfFile(finalPath.getText());
+            tenLinesOfTargetFile.setText(readTargetFileData);
         }
 
     }

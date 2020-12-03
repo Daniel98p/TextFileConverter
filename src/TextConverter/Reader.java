@@ -51,7 +51,6 @@ public class Reader {
         } while (foundIndex != -1);
         return indexesOfFirstCharInCode;
     }
-
 }
 
 
