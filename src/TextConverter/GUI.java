@@ -43,7 +43,6 @@ public class GUI implements ActionListener {
 //            System.out.println("There is no file path on your disk");
 //            e.printStackTrace();
         }
-        System.out.println(result);
         return result;
     }
 
