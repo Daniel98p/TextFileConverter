@@ -8,10 +8,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * Klasa odpowiedzialna za stworzenie okna oraz wyświetlenie komunikatów błędu
+ */
 public class GUI implements ActionListener {
-    /**
-     * Klasa odpowiedzialna za stworzenie okna oraz wyświetlenie komunikatów błędu
-     */
     private static JLabel pathLabel; // inicjalizacja elementów okna GUI
     private static JTextField path;
     private static JLabel codeLabel;
