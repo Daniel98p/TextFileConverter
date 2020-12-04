@@ -8,7 +8,16 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Klasa, w której odczytujemy z pliku i znajdujemy to co się nam przydaje (metody definiują co konkretnie)
+ */
 public class Reader {
+    /**
+     * Metoda odpowiedzialna za znalezienie indeksów linii, w których znajduje się szukany kod
+     *
+     * @param path ścieżka do pliku
+     * @param code szukany kod znaków
+     */
     public static List<Integer> getLineIndexWithCode(String path, String code) {
         List<Integer> indexesOfLineWithCode = new ArrayList();
         int lineIndexer = 0;
@@ -30,6 +39,13 @@ public class Reader {
         return indexesOfLineWithCode;
     }
 
+    /**
+     * Metoda odpowiedzialna za znalezienie pierwszych indeksów kodu w linii
+     *
+     * @param line linia, którą analizujemy
+     * @param code szukany kod znaków
+     * @return lista indeksów
+     */
     public static List<Integer> findFirstIndexOfCodeInLine(String line, String code) {
         int foundIndex = line.indexOf(code);
         int cutIndexes = 0;

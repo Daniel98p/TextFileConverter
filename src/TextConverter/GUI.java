@@ -9,7 +9,10 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class GUI implements ActionListener {
-    private static JLabel pathLabel;
+    /**
+     * Klasa odpowiedzialna za stworzenie okna oraz wyświetlenie komunikatów błędu
+     */
+    private static JLabel pathLabel; // inicjalizacja elementów okna GUI
     private static JTextField path;
     private static JLabel codeLabel;
     private static JTextField code;
@@ -24,6 +27,12 @@ public class GUI implements ActionListener {
     private static JTextArea tenLinesOfReadFile;
     private static JTextArea tenLinesOfTargetFile;
 
+    /**
+     * Metoda odpowiedzialna za zapisanie 10 linii z pliku (potrzebne w GUI)
+     *
+     * @param path ścieżka do pliku, z którego chcemy zapisać 10 linii
+     * @return ciąg znaków pobrany z pliku tekstowego
+     */
     public static String saveTenLinesOfFile(String path) {
         int lineIndexer = 0;
         String result = "";
@@ -31,7 +40,7 @@ public class GUI implements ActionListener {
             File handler = new File(path);
             Scanner myReader = new Scanner(handler);
             while (myReader.hasNextLine()) {
-                if (lineIndexer == 10){
+                if (lineIndexer == 10) {
                     break;
                 }
                 String data = myReader.nextLine();
@@ -46,7 +55,9 @@ public class GUI implements ActionListener {
         return result;
     }
 
-
+    /**
+     * Metoda, w której odbywa się tworzenie elementów okna GUI, ustawienie położenia, rozmiarów itd...
+     */
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         JPanel panel = new JPanel();
@@ -120,6 +131,9 @@ public class GUI implements ActionListener {
 
     }
 
+    /**
+     * Metoda, wywoływana po naciśnięciu przycisku, wyświetlenie komunikatów w przypadku błędów
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String finalPathText = finalPath.getText();

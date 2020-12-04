@@ -6,13 +6,25 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+
+/**
+ * Klasa odpowiedzialna za skonwertowanie pliku na wynikowy
+ */
 public class Converter {
+    /**
+     * Metoda odpowiedzialna za konwersje pliku z wykorzystaniem metod z klasy reader
+     *
+     * @param path      ścieżka do pliku zczytywanego
+     * @param code      kod, który chcemy zmienić
+     * @param finalPath ścieżka do pliku wynikowego
+     * @param finalCode kod, który chcemy uzyskać w ploku wynikowym
+     */
     public static void convertFile(String path, String code, String finalPath, String finalCode) {
         int lineIndexer = 0;
-        if (finalCode.length() > code.length()){
+        if (finalCode.length() > code.length()) {
             finalCode = finalCode.substring(0, code.length());
         }
-        if (finalCode.length() < code.length()){
+        if (finalCode.length() < code.length()) {
             code = code.substring(0, finalCode.length());
         }
         try {
@@ -24,8 +36,7 @@ public class Converter {
                 String newData = data;
                 if (data.length() < 5) {
                     resultFileHandler.write(data + "\n");
-                }
-                else if (Reader.getLineIndexWithCode(path, code).contains(lineIndexer)) {
+                } else if (Reader.getLineIndexWithCode(path, code).contains(lineIndexer)) {
                     for (int i = 0; i < Reader.findFirstIndexOfCodeInLine(data, code).size(); i += 1) {
                         newData = newData.substring(0, Reader.findFirstIndexOfCodeInLine(data, code).get(i))
                                 + finalCode + data.substring(Reader.findFirstIndexOfCodeInLine(data, code).get(i)
